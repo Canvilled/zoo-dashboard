@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zoo Dashboard
+
+A comprehensive zoo management dashboard built with Next.js, featuring real-time animal status monitoring, authentication, and interactive UI components.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ 
+- pnpm (recommended) or npm/yarn
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd zoo-dashboard
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables:
+```bash
+cp example.env .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Run the development server:
+```bash
+pnpm dev
+```
 
-## Learn More
+5. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
-To learn more about Next.js, take a look at the following resources:
+## Authentication
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application uses mock authentication for development purposes. You can log in with the following test accounts:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Admin Account
+- **Email:** `admin@zoo.com`
+- **Password:** `zooadmin123`
+- **Role:** Zoo Administrator
 
-## Deploy on Vercel
+### Keeper Account
+- **Email:** `keeper@zoo.com`
+- **Password:** `keeper123`
+- **Role:** Zoo Keeper
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Framework:** Next.js 15
+- **Styling:** Tailwind CSS + DaisyUI
+- **Authentication:** NextAuth.js
+- **Icons:** React Icons
+- **Form Validation:** Zod
+- **Data Fetching:** TanStack Query
+- **Package Manager:** pnpm

@@ -19,7 +19,7 @@ RUN pnpm install
 ENV NEXTAUTH_URL=${NEXTAUTH_URL}
 
 # Build the Next.js app
-RUN pnpm build
+RUN pnpm run build
 
 # Stage 2: Create the final image
 FROM node:23-alpine
