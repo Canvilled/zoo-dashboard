@@ -1,10 +1,25 @@
 'use client';
 
+import { useState } from 'react';
 import { useAnimals } from '@/hooks/useAnimals';
+import { Animal } from '@/types/animal';
 import AnimalCard from './AnimalCard';
+import AnimalDetailModal from './AnimalDetailModal';
 
 export default function AnimalDashboard() {
   const { data: animals, isLoading, error } = useAnimals();
+  const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleAnimalClick = (animal: Animal) => {
+    setSelectedAnimal(animal);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedAnimal(null);
+  };
 
   if (isLoading) {
     return (
@@ -36,9 +51,19 @@ export default function AnimalDashboard() {
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {animals.map((animal) => (
-          <AnimalCard key={animal.id} animal={animal} />
+          <AnimalCard 
+            key={animal.id} 
+            animal={animal} 
+            onClick={() => handleAnimalClick(animal)}
+          />
         ))}
       </div>
+      
+      <AnimalDetailModal 
+        animal={selectedAnimal}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }
