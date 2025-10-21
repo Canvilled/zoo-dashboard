@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
           const { email, password } = credentialsSchema.parse(credentials)
           
           const user = mockUsers.find(
-            (u) => u.email === email && u.password === password
+            (user) => user.email === email && user.password === password
           )
           
           if (user) {
