@@ -12,14 +12,8 @@ export default function Header() {
     router.push('/login');
   };
 
-  if (status === 'loading') {
-    return (
-      <div className="navbar bg-base-100 shadow-sm">
-        <div className="flex-1">
-          <span className="loading loading-spinner loading-sm"></span>
-        </div>
-      </div>
-    );
+  if (status !== 'authenticated' || !session) {
+    return null;
   }
 
   return (

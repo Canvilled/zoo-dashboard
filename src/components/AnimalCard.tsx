@@ -2,17 +2,14 @@ import { Animal } from '@/types/animal';
 
 interface AnimalCardProps {
   animal: Animal;
+  onClick?: () => void;
 }
 
-export default function AnimalCard({ animal }: AnimalCardProps) {
+export default function AnimalCard({ animal, onClick }: AnimalCardProps) {
   const getNeedColor = (value: number) => {
     if (value < 30) return 'badge-error';
     if (value < 60) return 'badge-warning';
     return 'badge-success';
-  };
-
-  const getBadgeSize = (value: number, isHighest: boolean) => {
-    return isHighest ? 'badge-lg' : 'badge-sm';
   };
 
   const needs = [
@@ -22,7 +19,10 @@ export default function AnimalCard({ animal }: AnimalCardProps) {
   ].sort((a, b) => b.value - a.value);
 
   return (
-    <div className="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+    <div 
+      className="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow cursor-pointer"
+      onClick={onClick}
+    >
       <div className="card-body p-4">
         <div className="space-y-4">
           <div>
