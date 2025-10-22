@@ -69,7 +69,7 @@ export default function LoginPage() {
       } else if (result?.ok) {
         router.push('/')
       }
-    } catch (error) {
+    } catch {
       setAuthError('Login failed. Please try again.')
     } finally {
       setIsLoading(false)

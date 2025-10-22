@@ -34,6 +34,41 @@ pnpm dev
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser.
 
+## Docker Usage
+
+**Important:** You must build the image first before running it with environment variables.
+
+When using Docker, you can pass environment variables directly:
+
+```bash
+# Build first (only need to do this once)
+docker build -t zoo-dashboard . --build-arg NEXTAUTH_URL=http://localhost:3000
+
+# Run with environment variables
+docker run -p 3000:3000 \
+  -e NEXTAUTH_SECRET=your-secret-here \
+  -e NEXTAUTH_URL=http://localhost:3000 \
+  zoo-dashboard
+```
+
+**Important:** The `NEXTAUTH_URL` environment variable is required for authentication to work correctly. In Docker environments, this should match the URL where the application is accessible.
+
+Or create a `.env` file and mount it:
+
+```bash
+# Build first (only need to do this once)
+docker build -t zoo-dashboard . --build-arg NEXTAUTH_URL=http://localhost:3000
+
+# Run with env file
+docker run -p 3000:3000 --env-file .env zoo-dashboard
+```
+
+Example `.env` file for Docker:
+```env
+NEXTAUTH_SECRET=your-secret-here
+NEXTAUTH_URL=http://localhost:3000
+```
+
 ## Authentication
 
 The application uses mock authentication for development purposes. You can log in with the following test accounts:
