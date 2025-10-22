@@ -3,8 +3,9 @@ LABEL authors="huynguyen"
 
 # Install dependencies for canvas module 
 RUN apk add --no-cache build-base cairo-dev jpeg-dev pango-dev giflib-dev
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+
+RUN corepack enable && corepack prepare pnpm@10.11.0 --activate || \
+    npm install -g pnpm@10.11.0
 
 # Set working directory
 WORKDIR /app
@@ -13,9 +14,11 @@ WORKDIR /app
 COPY . .
 
 
-# Install dependencies
-RUN pnpm install
-
+# Install dependencies (disable interactive prompts and update notifications)
+ENV CI=true
+ENV PNPM_NO_UPDATE_NOTIFIER=true
+RUN pnpm install --frozen-lockfile
+ARG NEXTAUTH_URL
 ENV NEXTAUTH_URL=${NEXTAUTH_URL}
 
 # Build the Next.js app

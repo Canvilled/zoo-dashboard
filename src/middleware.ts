@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from 'next/server'
 export async function middleware(req: NextRequest) {
   const token = await getToken({ req })
   
-  if (!token && req.nextUrl.pathname !== '/login') {
-    return false
+  if (!token) {
+    return NextResponse.redirect(new URL('/login', req.url))
   }
   
   return NextResponse.next()
@@ -20,6 +20,6 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|login|not_found).*)',
   ],
 }

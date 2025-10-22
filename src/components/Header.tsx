@@ -2,6 +2,7 @@
 
 import { useSession, signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function Header() {
   const { data: session, status } = useSession();
@@ -19,9 +20,9 @@ export default function Header() {
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="flex-1">
-        <a href="/" className="btn btn-ghost text-xl font-bold">
+        <Link href="/" className="btn btn-ghost text-xl font-bold">
           Zoo Dashboard
-        </a>
+        </Link>
       </div>
       
       <div className="flex items-center gap-4">
