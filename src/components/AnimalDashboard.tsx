@@ -1,13 +1,15 @@
 'use client';
 
 import { useState } from 'react';
-import { useAnimals } from '@/hooks/useAnimals';
+import { useSuspenseQuery } from '@tanstack/react-query'
 import { Animal } from '@/types/animal';
 import AnimalCard from './AnimalCard';
 import AnimalDetailModal from './AnimalDetailModal';
+import { animalOptions } from '@/queries/animals';
 
 export default function AnimalDashboard() {
-  const { data: animals, isLoading, error } = useAnimals();
+  
+  const { data: animals, isLoading, error } = useSuspenseQuery(animalOptions);
   const [selectedAnimal, setSelectedAnimal] = useState<Animal | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
