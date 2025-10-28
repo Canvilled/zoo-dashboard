@@ -1,5 +1,5 @@
 import { Animal } from '@/types/animal';
-import { queryOptions } from '@tanstack/react-query'
+import { queryOptions, isServer } from '@tanstack/react-query'
 import { generateRandomAnimals } from '@/lib/animals-service';
 
 // Client-side fetch using API route
@@ -18,5 +18,5 @@ function fetchAnimalsServer(): Animal[] {
 
 export const animalOptions = queryOptions({
     queryKey: ['animals'],
-    queryFn: typeof window === 'undefined' ? fetchAnimalsServer : fetchAnimalsClient,
+    queryFn: isServer ? fetchAnimalsServer : fetchAnimalsClient,
 })
