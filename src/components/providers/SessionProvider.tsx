@@ -1,22 +1,15 @@
 'use client'
 
 import { SessionProvider } from 'next-auth/react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { useState } from 'react'
+import { QueryClientProvider } from '@tanstack/react-query'
+import { getQueryClient } from '@/lib/get-query-client'
 
 interface ProvidersProps {
   children: React.ReactNode
 }
 
 export default function Providers({ children }: ProvidersProps) {
-  const [queryClient] = useState(() => new QueryClient({
-    defaultOptions: {
-      queries: {
-        staleTime: 60 * 1000, // 1 minute
-        refetchInterval: 60 * 1000, // 1 minute
-      },
-    },
-  }))
+  const queryClient = getQueryClient()
 
   return (
     <SessionProvider>
