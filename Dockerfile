@@ -1,8 +1,7 @@
 FROM node:23-alpine AS builder
 LABEL authors="huynguyen"
 
-# Install dependencies for canvas module 
-RUN apk add --no-cache build-base cairo-dev jpeg-dev pango-dev giflib-dev
+RUN apk add --no-cache libc6-compat
 
 RUN corepack enable && corepack prepare pnpm@10.11.0 --activate || \
     npm install -g pnpm@10.11.0
